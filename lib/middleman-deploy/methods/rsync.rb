@@ -22,13 +22,13 @@ module Middleman
 
           dest_url  = "#{user}#{self.host}:#{self.path}"
           flags     = self.flags || '-avz'
-          command   = "rsync #{flags} '-e ssh -p #{self.port}' #{self.build_dir}/ #{dest_url}"
+          command   = "rsync #{flags} '-e ssh -p #{self.port}' #{self.server_instance.build_dir}/ #{dest_url}"
 
           if self.clean
             command += " --delete"
           end
 
-          puts "## Deploying via rsync to #{dest_url} port=#{self.port} from #{self.build_dir}"
+          puts "## Deploying via rsync to #{dest_url} port=#{self.port} from #{self.server_instance.build_dir}"
           exec command
         end
 
